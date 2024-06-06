@@ -3,9 +3,10 @@ const Sequelize=require("sequelize")
 require("dotenv").config()
 
 // creating connection
-const connection=new Sequelize(process.env.db_name,process.env.user_name,process.env.password,{
-    host:"localhost",
-    dialect:"mysql"
+const connection=new Sequelize(process.env.dataBaseName,process.env.user_name,process.env.mySqlPassword,{
+    host:process.env.host,
+    dialect:"mysql",
+    port:process.env.mySqlPort
 })
 connection.authenticate()
 .then(()=>console.log("connected to MySql database successfull"))
