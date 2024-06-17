@@ -1,0 +1,43 @@
+// models/friendRequest.js
+const { DataTypes } = require('sequelize');
+const connection = require('../config/db');
+const User=require("../modal/userModal")
+const FriendRequest = connection.define('FriendRequest', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      senderId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: User,
+          key: 'id',
+        },
+      },
+      receiverId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: User,
+          key: 'id',
+        },
+      },
+      status: {
+        type: DataTypes.ENUM('Pending', 'Accepted', 'Rejected'),
+        defaultValue: 'Pending',
+      },
+      timestamp: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+});
+
+// Define associations
+FriendRequest.associate = (models) => {
+  FriendRequest.belongsTo(models.User, { foreignKey: 'senderId', as: 'Sender' });
+  FriendRequest.belongsTo(models.User, { foreignKey: 'receiverId', as: 'Receiver' });
+};
+
+module.exports = FriendRequest;

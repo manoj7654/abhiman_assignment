@@ -7,10 +7,10 @@ const authenticate=async(req,res,next)=>{
         if(token){
             const decode=jwt.verify(token,process.env.secret);
             if(decode){
-              console.log(decode.userId)
-                const userId=decode.userId;
-                req.userId=userId;
-             
+                console.log(decode)
+                // const userId=decode.userId;
+                // req.userId=userId;
+              req.user = decode
                 next();
             }else{
                 res.json({message:"Please login again"})

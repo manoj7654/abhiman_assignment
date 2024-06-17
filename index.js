@@ -6,6 +6,7 @@ const app=express();
 const {connection}=require("./config/db");
 const { userRouter } = require("./routes/userRouter");
 const { chatRoomRouter } = require("./routes/chatRoomRouter");
+const profileRouter = require("./routes/profileRouter");
 
 // importing dotenv for accessing data from .env file
 require("dotenv").config()
@@ -17,8 +18,12 @@ app.get("/",(req,res)=>{
 
 app.use("/api",userRouter)
 app.use("/api",chatRoomRouter)
+app.use("/api",profileRouter)
 
-
+connection.sync({ force: false })  // Set to true to reset the database on every server restart
+  .then(() => {
+    console.log('Database & tables created!');
+  });
 
 // running server on specific port no and connection to database
 app.listen(process.env.port,async()=>{

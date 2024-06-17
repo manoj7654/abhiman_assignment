@@ -1,11 +1,11 @@
 const express=require("express");
-const { createChatRoom } = require("../controller/chatRoomController");
+const { createChatRoom, joinChatRoom } = require("../controller/chatRoomController");
 const { authenticate } = require("../middleware/authentication");
 const chatRoomRouter=express.Router();
 
 
 
 chatRoomRouter.post("/chatrooms",authenticate,createChatRoom)
-// chatRoomRouter.post("/login",login)
+chatRoomRouter.post("/join",authenticate,joinChatRoom)
 
 module.exports={chatRoomRouter}
