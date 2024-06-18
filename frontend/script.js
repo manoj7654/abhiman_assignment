@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
              };
      
         try {
-            const response = await fetch('http://localhost:4500/api/register', {
+            const response = await fetch('https://abhiman-backend-s7db.onrender.com/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             password: document.getElementById('loginPassword').value
         };
         try {
-            const response = await fetch('http://localhost:4500/api/login', {
+            const response = await fetch('https://abhiman-backend-s7db.onrender.com/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

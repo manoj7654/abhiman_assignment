@@ -23,7 +23,7 @@ createRoomForm.addEventListener('submit', async (event) => {
     };
     console.log(roomData)
     try {
-        const response = await fetch('http://localhost:4500/api/chatrooms', {
+        const response = await fetch('https://abhiman-backend-s7db.onrender.com/api/chatrooms', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ joinRoomForm.addEventListener('submit', async (event) => {
     };
 // console.log(token)
     try {
-        const response = await fetch('http://localhost:4500/api/joinroom', {
+        const response = await fetch('https://abhiman-backend-s7db.onrender.com/api/joinroom', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
