@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="chatroom.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">Chatroom</h2>
+        <div class="chatroom">
+            <div class="chatroom-buttons">
+                <button id="createRoomBtn" onclick="toggleChatroomForm('create')">Create Room</button>
+                <button id="joinRoomBtn" onclick="toggleChatroomForm('join')">Join Room</button>
+            </div>
+            <form id="createRoomForm" class="form" style="display:none;">
+                <label for="createroom">Room ID:</label>
+                <input type="text" id="createroom" required>
+                <label for="createpassword">Password:</label>
+                <input type="password" id="createpassword" required>
+                <button type="submit">Create</button>
+            </form>
+            <form id="joinRoomForm" class="form">
+                <!-- <label for="roomId">Room ID:</label> -->
+                <input type="text" id="roomId" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Join</button>
+            </form>
+        </div>
+    </div>
+    <script src="chatroom.js"></script>
+</body>
+</html>
