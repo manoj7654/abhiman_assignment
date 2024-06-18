@@ -40,6 +40,10 @@ const User = connection.define('User', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  isFreeRoomJoined: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   timestamps: true,
   
