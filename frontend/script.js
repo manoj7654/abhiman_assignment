@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerToggle = document.getElementById('registerToggle');
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
+    const toastContainer = document.getElementById('toastContainer');
 
     loginToggle.addEventListener('click', () => {
         loginToggle.classList.add('active');
@@ -18,6 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.classList.remove('active');
     });
 
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.classList.add('toast', type, 'show');
+        toast.innerText = message;
+        toastContainer.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
+    }
+
+    let url="http://localhost:4500"
     // user registeration
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -27,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
              const name = document.getElementById('name').value;
              const phone = document.getElementById('phone').value;
              const password = document.getElementById('registerPassword').value;
-             const availableCoins = document.getElementById('availableCoins').value;
+             const availCoins = document.getElementById('availableCoins').value;
              const isPrime = document.getElementById('isPrime').checked;
      
              // Create user data object
@@ -37,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  name: name,
                  phone: phone,
                  password: password,
-                 availableCoins: availableCoins,
+                 availCoins: availCoins,
                  isPrime: isPrime
              };
      
@@ -54,14 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 // Handle successful registration
                 console.log(data)
-                alert(data.message)
+                showToast(data.message, 'success');
+                
             } else {
                 // Handle registration error
                 const errorMessage = await response.text();
                 console.error('Registration failed:', errorMessage);
+                showToast('Registration failed: ' + errorMessage, 'error');
             }
         } catch (error) {
-            console.error('Error during registration:', error);
+            showToast('Error during registration: ' + error.message, 'error');
         }
     });
 
@@ -84,14 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
                
                 const data = await response.json();
                 localStorage.setItem("token",data.token)
-                alert(data.message)
-                window.location.href = 'chatroom.html';
+                showToast(data.message, 'success');
+                setTimeout(() => {
+                    window.location.href = 'chatroom.html';
+                }, 3000);
             } else {
                 const errorMessage = await response.text();
-                console.error('Login failed:', errorMessage);
+                showToast('Login failed: ' + errorMessage, 'error');
             }
         } catch (error) {
-            console.error('Error during login:', error);
+            showToast('Error during login: ' + error.message, 'error');
         }
     });
 

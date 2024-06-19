@@ -4,6 +4,11 @@ body {
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
+    background-image: url('https://github.com/manoj7654/RealTimeChatApplication/assets/107467981/0341d04f-3a57-4e1c-ba01-3926ec825312'); /* Update this path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat
+    
 }
 
 .container {
@@ -83,4 +88,43 @@ body {
 
 .form button:hover {
     background-color: #45a049;
+}
+.toast-container {
+    position: fixed;
+    top: 10px; /* This value can be adjusted to move the toasts down from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Toast styles */
+.toast {
+    min-width: 200px;
+    margin-bottom: 10px;
+    padding: 16px 24px; /* Added padding for better spacing */
+    border-radius: 30px; /* Makes the corners fully rounded */
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0); /* Added transform for a subtle slide-in effect */
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.error {
+    background-color: #f44336;
 }

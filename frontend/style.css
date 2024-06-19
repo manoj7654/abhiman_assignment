@@ -5,20 +5,29 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('images/background.jpg'); /* Update this path */
+    background-image: url('https://github.com/manoj7654/abhiman_backend/assets/107467981/b2e094f8-245d-482e-9c99-5d089ec852fd'); /* Update this path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-
+.main-container{
+width: 100%;
+/* border: 1px solid red; */
+}
+.heading{
+    text-align: center;
+    font-size: 20px;
+    /* border: 1px solid red; */
+}
 .container {
     background: rgba(255, 255, 255, 0.9); /* Adding a semi-transparent background for better readability */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
+    /* max-width: 400px; */
+    width: 30%;
     height: auto;
+    margin: auto;
     /* border: 1px solid red; */
 }
 
@@ -109,4 +118,43 @@ form button:hover {
 
 .checkbox-label {
     font-weight: normal;
+}
+.toast-container {
+    position: fixed;
+    top: 10px; /* This value can be adjusted to move the toasts down from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Toast styles */
+.toast {
+    min-width: 200px;
+    margin-bottom: 10px;
+    padding: 16px 24px; /* Added padding for better spacing */
+    border-radius: 30px; /* Makes the corners fully rounded */
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0); /* Added transform for a subtle slide-in effect */
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.error {
+    background-color: #f44336;
 }

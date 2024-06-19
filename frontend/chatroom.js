@@ -12,6 +12,18 @@ function toggleChatroomForm(formType) {
         joinRoomForm.style.display = "block";
     }
 }
+
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.classList.add('toast', type, 'show');
+    toast.innerText = message;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
 let token=localStorage.getItem("token")
 createRoomForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -34,19 +46,15 @@ createRoomForm.addEventListener('submit', async (event) => {
             console.log(response)
         if (response.ok) {
             const responseData = await response.json();
-            alert(responseData.message); // Show success message
+            showToast(responseData.message, 'success');
             // Redirect to the chatroom page
             // window.location.href = 'chatroom.html';
         } else {
             const errorMessage = await response.text();
-            console.error('Error creating chatroom:', errorMessage);
-            // Display error message to the user
-            alert('Failed to create chatroom: ' + errorMessage);
+            showToast('Chatroom creation failed: ' + errorMessage, 'error');
         }
     } catch (error) {
-        console.error('Error creating chatroom:', error);
-        // Display error message to the user
-        alert('Failed to create chatroom: ' + error.message);
+        showToast('Chatroom creation failed: ' + errorMessage, 'error');
     }
 });
 
@@ -75,18 +83,16 @@ joinRoomForm.addEventListener('submit', async (event) => {
             console.log(response)
         if (response.ok) {
             const responseData = await response.json();
-            alert(responseData.message); // Show success message
-            // Redirect to the chatroom page
-            // window.location.href = 'chatroom.html';
+            showToast(responseData.message, 'success');
+            setTimeout(() => {
+                window.location.href = 'messageRoom.html';
+            }, 3000);
         } else {
             const errorMessage = await response.text();
-            console.error('Error join chatroom:', errorMessage);
-            // Display error message to the user
-            alert('Failed to join chatroom: ' + errorMessage);
+            showToast('Failed to join chatroom: ' + errorMessage, 'error');
         }
     } catch (error) {
-        console.error('Error join chatroom:', error);
-        // Display error message to the user
-        alert('Failed to join chatroom: ' + error.message);
+        
+        showToast('Failed to join chatroom: ' + errorMessage, 'error');
     }
 });
